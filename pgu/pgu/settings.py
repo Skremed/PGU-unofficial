@@ -15,9 +15,6 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATES_DIR = os.path.join(BASE_DIR, "templates")
-STATICFILES_DIRS = [
-    '/vol/web/static/',
-]
 
 
 # Quick-start development settings - unsuitable for production
@@ -29,7 +26,11 @@ SECRET_KEY = '+qfhbxqrq5lr@s$ko4mgf$p=w8_3x23q7$r1wkxie3$71zc*lz'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["172.17.33.129", "*"]
+<<<<<<< HEAD
+ALLOWED_HOSTS = ["172.17.33.129"]
+=======
+ALLOWED_HOSTS = ["172.17.33.129", "127.0.0.1"]
+>>>>>>> 86dabe60a6f33e1dce338deb7c575f28d5c9b145
 
 
 # Application definition
@@ -127,3 +128,6 @@ MEDIA_URL = '/media/'
 
 MEDIA_ROOT = 'vol/web/media'
 STATIC_ROOT = 'vol/web/static'
+STATICFILES_DIRS = [
+    '/vol/web/static/',
+]
