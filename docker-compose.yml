@@ -8,29 +8,6 @@ services:
       ports:
         - "8000:8000"
       volumes:
-        - ./app:/app
+        - ./pgu:/pgu
       command: >
-        sh -c "python manage.py wait_for_db &&
-               python manage.py migrate &&
-               python manage.py runserver 0.0.0.0:8000"
-      environment:
-        - DB_HOST=db
-        - DB_NAME=postgres
-        - DB_USER=postgres
-        - DB_PASS=supersecretpassword
-
-    selenium-hub:
-        image: selenium/hub:3.141.59-20200525
-        container_name: selenium-hub
-        ports:
-          - "4444:4444"
-
-    chrome:
-        image: selenium/node-chrome:3.141.59-20200525
-        volumes:
-          - /dev/shm:/dev/shm
-        depends_on:
-          - selenium-hub
-        environment:
-          - HUB_HOST=selenium-hub
-          - HUB_PORT=4444
+        sh -c "python manage.py runserver 0.0.0.0:8000"
