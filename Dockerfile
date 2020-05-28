@@ -16,5 +16,5 @@ RUN mkdir -p /vol/web/static
 RUN adduser -D user
 RUN chown -R user:user /vol/
 RUN chmod -R 755 /vol/web
-COPY ./vol /vol
+COPY ./pgu/vol /vol
 USER user
