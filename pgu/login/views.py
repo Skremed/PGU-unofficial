@@ -21,6 +21,7 @@ class UserView(views.APIView):
             resp.status_code = 400
             return resp
         sys.path.append("..")
+        # FIXME: Unresolved import
         from scraper import scrape
         scrape.loginSite([user, password])
         resp.status_code = 200
