@@ -2,6 +2,7 @@ import os
 import sys
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+from logfiles.logger import setup_logging, logging
 
 
 class Scraper():
