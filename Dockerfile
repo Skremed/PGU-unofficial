@@ -9,6 +9,11 @@ RUN mkdir /pgu
 WORKDIR /pgu
 COPY ./pgu /pgu
 
+RUN apk add --update --no-cache jpeg-dev
+RUN apk add --update --no-cache --virtual .tmp-build-deps \
+      gcc libc-dev linux-headers postgresql-dev musl-dev zlib zlib-dev
+RUN apk del .tmp-build-deps
+
 # update apk repo
 RUN echo "http://dl-4.alpinelinux.org/alpine/v3.8/main" >> /etc/apk/repositories && \
     echo "http://dl-4.alpinelinux.org/alpine/v3.8/community" >> /etc/apk/repositories

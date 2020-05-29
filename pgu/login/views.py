@@ -20,9 +20,13 @@ class UserView(views.APIView):
         if not user or not password:
             resp.status_code = 400
             return resp
-        sys.path.append("..")
+
         from scraper import scrape
-        scrape.loginSite([user, password])
-        resp.status_code = 200
+        status = scrape.loginSite([user, password])
+
+        if status:
+            resp.status_code = 200
+        else:
+            resp.status_code = 400
         resp.data = [user, password]
         return resp

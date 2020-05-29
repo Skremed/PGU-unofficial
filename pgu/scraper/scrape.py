@@ -20,7 +20,7 @@ def loginSite(cred):
         password = cred[1]
     except IndexError as e:
         print("Please provide a user name and password")
-        return
+        return False
     driver.get("https://erp.pgu.ac.ir/Dashboard.aspx")
     login = driver.find_element_by_css_selector(
     "#contentMainContainer > a:nth-child(1)"
@@ -37,8 +37,9 @@ def loginSite(cred):
     passwordButton.send_keys(str(password))
     button = driver.find_element_by_css_selector("#login_btn > input")
     button.click()
-    while 1:
-        pass
+    driver.quit()
+    print(f"User {user} succesfully logged in")
+    return True
 
 
 def main():
