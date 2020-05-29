@@ -5,6 +5,7 @@ from selenium.webdriver.common.keys import Keys
 from logfiles.logger import setup_logging, logging
 
 
+setup_logging()
 class Scraper():
     """Scraper for pgu.ac.ir
     functions:
@@ -28,8 +29,10 @@ class Scraper():
         chrome_options.add_argument('--no-sandbox')
         chrome_options.add_argument('--headless')
         chrome_options.add_argument('--disable-gpu')
+        logging.info(f"{chrome_options}")
         if __name__ == "__main__":
             self.driver = webdriver.Edge("msedgedriver.exe")
+            logging.info(f"driver:msedgedriver.exe")
         else:
             self.driver = webdriver.Chrome(chrome_options=chrome_options)
         self.driver.implicitly_wait(10)
@@ -42,20 +45,19 @@ class Scraper():
 
 
     def loginSite(self, cred):
-        # logging.info(f"{chrome_options}")
 
         user = None
         password = None
         try:
             user = cred[0]
             password = cred[1]
-            # logging.info(f"Username:{user}")
+            logging.info(f"Username:{user}")
         except IndexError as e:
             # print("Please provide a user name and password")
-            # logging.warning("Not enough data provided")
+            logging.warning("Not enough data provided")
             return
         self.driver.get(self.address["dashboard"])
-        # logging.info(f"Postion:https://erp.pgu.ac.ir/Dashboard.aspx")
+        logging.info(f"Postion:{self.driver.current_url}")
         login = self.get_element("loginTo")
         login.click()
 
@@ -74,7 +76,8 @@ class Scraper():
         button.click()
         while 1:
             pass
-        print(f"User {user} succesfully logged in")
+        # print(f"User {user} succesfully logged in")
+        logging.info(f"User:{user} logged in")
         return True
 
 
