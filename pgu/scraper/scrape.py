@@ -22,14 +22,8 @@ def loginSite(cred):
         password = cred[1]
         # logging.info(f"Username:{user}")
     except IndexError as e:
-<<<<<<< HEAD
         print("Please provide a user name and password")
         return False
-=======
-        # print("Please provide a user name and password")
-        # logging.warning("Not enough data provided")
-        return
->>>>>>> 6a707f2029c91e42161d0d125d4db5327d152bb4
     driver.get("https://erp.pgu.ac.ir/Dashboard.aspx")
     # logging.info(f"Postion:https://erp.pgu.ac.ir/Dashboard.aspx")
     login = driver.find_element_by_css_selector(
