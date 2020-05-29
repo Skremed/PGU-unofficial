@@ -2,8 +2,9 @@ import os
 import sys
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+from logfiles.logger import setup_logging, logging
 
-
+setup_logging()
 driver = None
 
 def loginSite(cred):
@@ -13,19 +14,20 @@ def loginSite(cred):
     chrome_options.add_argument('--headless')
     chrome_options.add_argument('--disable-gpu')
     driver = webdriver.Chrome(chrome_options=chrome_options)
-    # logging.info(f"{chrome_options}")
+    logging.info(f"{chrome_options}")
     driver.implicitly_wait(10)
     user = None
     password = None
     try:
         user = cred[0]
         password = cred[1]
-        # logging.info(f"Username:{user}")
+        logging.info(f"Username:{user}")
     except IndexError as e:
-        print("Please provide a user name and password")
+        # print("Please provide a user name and password")
+        logging.warning("Not enough data provided")
         return False
     driver.get("https://erp.pgu.ac.ir/Dashboard.aspx")
-    # logging.info(f"Postion:https://erp.pgu.ac.ir/Dashboard.aspx")
+    logging.info(f"Postion:https://erp.pgu.ac.ir/Dashboard.aspx")
     login = driver.find_element_by_css_selector(
     "#contentMainContainer > a:nth-child(1)"
     )
@@ -42,7 +44,8 @@ def loginSite(cred):
     button = driver.find_element_by_css_selector("#login_btn > input")
     button.click()
     driver.quit()
-    print(f"User {user} succesfully logged in")
+    # print(f"User {user} succesfully logged in")
+    logging.info(f"{user} logged in")
     return True
 
 
