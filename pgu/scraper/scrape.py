@@ -2,7 +2,7 @@ import os
 import sys
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
-from logfiles.logger import setup_logging, logging
+from logger import setup_logging, logging
 
 
 setup_logging()
