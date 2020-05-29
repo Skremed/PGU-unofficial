@@ -1,8 +1,13 @@
+if __name__ == '__main__':
+    import os
+    import sys
+    sys.path.append(os.getcwd())
+
 import os
 import sys
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
-from logger import setup_logging, logging
+from pgu.logfiles.logger import logging, setup_logging
 
 
 setup_logging()
