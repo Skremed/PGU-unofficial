@@ -4,10 +4,16 @@ from django.views.generic import TemplateView
 from rest_framework import views, status
 from rest_framework.decorators import api_view, action
 from rest_framework.response import Response
+from .forms import UserFormModel
 
 
 class LoginTemplateView(TemplateView):
     template_name = 'login/login.html'
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["loginform"] = UserFormModel
+        return context
+    
 
 
 class UserView(views.APIView):

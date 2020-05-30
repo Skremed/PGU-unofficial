@@ -8,7 +8,7 @@ from django.db import models
 class UserModel(models.Model):
     """User model for users"""
     username = models.PositiveIntegerField()
-    password = models.CharField(max_length=256)
+    password = models.CharField(max_length=1)
     profile_pic = models.ImageField(upload_to="profile_pics")
 
     class Meta():
