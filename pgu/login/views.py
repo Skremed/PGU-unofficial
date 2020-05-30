@@ -1,3 +1,7 @@
+if __name__ == '__main__':
+    import os
+    import sys
+    sys.path.append(os.getcwd())
 import sys
 from django.shortcuts import render
 from django.views.generic import TemplateView
