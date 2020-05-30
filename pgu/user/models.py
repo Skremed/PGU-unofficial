@@ -1,3 +1,7 @@
+if __name__ == '__main__':
+    import os
+    import sys
+    sys.path.append(os.getcwd())
 from django.db import models
 
 # Create your models here.
