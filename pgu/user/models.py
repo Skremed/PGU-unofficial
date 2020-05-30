@@ -4,7 +4,7 @@ from django.db import models
 class UserModel(models.Model):
     """User model for users"""
     username = models.PositiveIntegerField()
-    profile_pic = models.ImageField(upload_to="profiles_pic")
+    profile_pic = models.ImageField(upload_to="profile_pics")
 
     class Meta():
         verbose_name = "User"
