@@ -24,7 +24,6 @@ class Scraper():
         "usernameField" : "#SSMUsername_txt",
         "passwordField" : "#SSMPassword_txt",
         "loginButton" : "#login_btn > input",
-
     }
 
 
@@ -33,18 +32,19 @@ class Scraper():
         chrome_options.add_argument('--no-sandbox')
         chrome_options.add_argument('--headless')
         chrome_options.add_argument('--disable-gpu')
-        logging.info(f"{chrome_options}")
         if __name__ == "__main__":
             self.driver = webdriver.Edge("msedgedriver.exe")
-            logging.info(f"driver:msedgedriver.exe")
         else:
             self.driver = webdriver.Chrome(chrome_options=chrome_options)
         self.driver.implicitly_wait(10)
 
 
     def get_element(self, name):
+        logging.info(f"trying to find '{name}'")
         if name not in self.css_selector:
+            logging.error(f"'{name}' not found")
             return None
+        logging.info(f"'{name}' found")
         return self.driver.find_element_by_css_selector(self.css_selector[name])
 
 
@@ -54,10 +54,9 @@ class Scraper():
         password = None
         try:
             user = cred[0]
-            password = cred[1]
             logging.info(f"Username:{user}")
+            password = cred[1]
         except IndexError as e:
-            # print("Please provide a user name and password")
             logging.warning("Not enough data provided")
             return
         self.driver.get(self.address["dashboard"])
@@ -80,7 +79,6 @@ class Scraper():
         button.click()
         while 1:
             pass
-        # print(f"User {user} succesfully logged in")
         logging.info(f"User:{user} logged in")
         return True
 
